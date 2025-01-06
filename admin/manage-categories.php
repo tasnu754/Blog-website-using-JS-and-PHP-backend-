@@ -11,6 +11,44 @@ $categories = mysqli_query($connection, $query);
 
 
 <section class="dashboard">
+
+  <?php if (isset($_SESSION['add-category-success'])) : ?>
+    <div class="alert_message success container">
+      <p>
+        <?= $_SESSION['add-category-success']; ?>
+        <?php unset($_SESSION['add-category-success']); ?>
+      </p>
+    </div>
+  <?php elseif (isset($_SESSION['add-category'])) : ?>
+    <div class="alert_message error container">
+      <p>
+        <?= $_SESSION['add-category']; ?>
+        <?php unset($_SESSION['add-category']); ?>
+      </p>
+    </div>
+  <?php elseif (isset($_SESSION['edit-category'])) : ?>
+    <div class="alert_message error container">
+      <p>
+        <?= $_SESSION['edit-category']; ?>
+        <?php unset($_SESSION['edit-category']); ?>
+      </p>
+    </div>
+  <?php elseif (isset($_SESSION['edit-category-success'])) : ?>
+    <div class="alert_message success container">
+      <p>
+        <?= $_SESSION['edit-category-success']; ?>
+        <?php unset($_SESSION['edit-category-success']); ?>
+      </p>
+    </div>
+  <?php elseif (isset($_SESSION['delete-category-success'])) : ?>
+    <div class="alert_message success container">
+      <p>
+        <?= $_SESSION['delete-category-success']; ?>
+        <?php unset($_SESSION['delete-category-success']); ?>
+      </p>
+    </div>
+  <?php endif ?>
+
   <div class="container dashboard_container">
     <button id="show_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-right-b"></i></button>
     <button id="hide_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-left-b"></i></button>
