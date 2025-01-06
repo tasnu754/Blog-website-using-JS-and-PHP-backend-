@@ -1,55 +1,62 @@
 <?php
 include 'partials/header.php';
+
+// fetch categories from database
+$query = "SELECT * FROM categories ORDER BY title";
+$categories = mysqli_query($connection, $query);
+
 ?>
 
 
 
 
 <section class="dashboard">
-    <div class="container dashboard_container">
-        <button id="show_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-right-b"></i></button>
-        <button id="hide_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-left-b"></i></button>
-      <aside>
-        <ul>
-          <li>
-              <a href="add-post.php"><i class="uil uil-pen"></i>
-              <h5>Add Post</h5>
-            </a>
-          </li>
-          <li>
-            <a href="index.php"><i class="uil uil-postcard"></i>
+  <div class="container dashboard_container">
+    <button id="show_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-right-b"></i></button>
+    <button id="hide_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-left-b"></i></button>
+    <aside>
+      <ul>
+        <li>
+          <a href="add-post.php"><i class="uil uil-pen"></i>
+            <h5>Add Post</h5>
+          </a>
+        </li>
+        <li>
+          <a href="index.php"><i class="uil uil-postcard"></i>
             <h5>Manage Post</h5>
-            </a>
-          </li>
+          </a>
+        </li>
 
-          <?php if(isset($_SESSION['user_is_admin'])) : ?>
+        <?php if (isset($_SESSION['user_is_admin'])) : ?>
 
           <li>
             <a href="add-user.php"><i class="uil uil-user-plus"></i>
-            <h5>Add User</h5>
+              <h5>Add User</h5>
             </a>
           </li>
           <li>
             <a href="manage-users.php"><i class="uil uil-users-alt"></i>
-            <h5>Manage Users</h5>
+              <h5>Manage Users</h5>
             </a>
           </li>
           <li>
             <a href="add-category.php"><i class="uil uil-edit"></i>
-            <h5>Add Category</h5>
+              <h5>Add Category</h5>
             </a>
           </li>
-            <a href="manage-categories.php" ><i class="uil uil-list-ul"></i>
+          <a href="manage-categories.php"><i class="uil uil-list-ul"></i>
             <h5>Manage Categories</h5>
-            </a>
+          </a>
           </li>
 
-          <?php endif ?>
-        </ul>
-      </aside>
+        <?php endif ?>
+      </ul>
+    </aside>
 
-      <main>
-        <h2>Manage Categories</h2>
+    <main>
+      <h2>Manage Categories</h2>
+
+      <?php if (mysqli_num_rows($categories) > 0) : ?>
         <table>
           <thead>
             <tr>
@@ -59,30 +66,24 @@ include 'partials/header.php';
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Travel</td>
-              <td><a href="edit-category.php" class="btn sm">Edit</a></td>
-              <td><a href="delete-category.php" class="btn sm danger">Delete</a></td>
-            </tr>
-            <tr>
-              <td>Wild Life</td>
-              <td><a href="edit-category.php" class="btn sm">Edit</a></td>
-              <td><a href="delete-category.php" class="btn sm danger">Delete</a></td>
-            </tr>
-            <tr>
-              <td>Music</td>
-              <td><a href="edit-category.php" class="btn sm">Edit</a></td>
-              <td><a href="delete-category.php" class="btn sm danger">Delete</a></td>
-            </tr>
+            <?php while ($category = mysqli_fetch_assoc($categories)) : ?>
+              <tr>
+                <td><?= $category['title'] ?></td>
+                <td><a href="<?= ROOT_URL ?>admin/edit-category.php?id=<?= $category['id'] ?>" class="btn sm">Edit</a></td>
+                <td><a href="<?= ROOT_URL ?>admin/delete-category.php?id=<?= $category['id'] ?>" class="btn sm danger">Delete</a></td>
+              </tr>
+            <?php endwhile ?>
           </tbody>
         </table>
-      </main>
+      <?php else : ?>
+        <div class="alert__messsage error"><?= "No category found" ?></div>
+      <?php endif ?>
+    </main>
 
-    </div>
-  </section>
+  </div>
+</section>
 
 
 <?php
 include '../partials/footer.php';
 ?>
-    
