@@ -20,6 +20,34 @@ $users = mysqli_query($connection, $query);
         <?php unset($_SESSION['add-user-success']); ?>
       </p>
     </div>
+  <?php elseif (isset($_SESSION['edit-user-success'])) : ?>
+    <div class="alert_message success container">
+      <p>
+        <?= $_SESSION['edit-user-success']; ?>
+        <?php unset($_SESSION['edit-user-success']); ?>
+      </p>
+    </div>
+  <?php elseif (isset($_SESSION['edit-user'])) : ?>
+    <div class="alert_message error container">
+      <p>
+        <?= $_SESSION['edit-user']; ?>
+        <?php unset($_SESSION['edit-user']); ?>
+      </p>
+    </div>
+  <?php elseif (isset($_SESSION['delete-user'])) : ?>
+    <div class="alert_message error container">
+      <p>
+        <?= $_SESSION['delete-user']; ?>
+        <?php unset($_SESSION['delete-user']); ?>
+      </p>
+    </div>
+  <?php elseif (isset($_SESSION['delete-user-success'])) : ?>
+    <div class="alert_message success container">
+      <p>
+        <?= $_SESSION['delete-user-success']; ?>
+        <?php unset($_SESSION['delete-user-success']); ?>
+      </p>
+    </div>
   <?php endif; ?>
 
   <div class="container dashboard_container">
