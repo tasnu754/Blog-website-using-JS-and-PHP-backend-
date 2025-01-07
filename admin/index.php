@@ -15,6 +15,28 @@ $posts = mysqli_query($connection, $query);
 
 
 <section class="dashboard">
+  <?php if (isset($_SESSION['add-category-success'])) : ?>
+    <div class="alert_message success container">
+      <p>
+        <?= $_SESSION['add-category-success']; ?>
+        <?php unset($_SESSION['add-category-success']); ?>
+      </p>
+    </div>
+  <?php elseif (isset($_SESSION['edit-post-success'])) : ?>
+    <div class="alert_message success container">
+      <p>
+        <?= $_SESSION['edit-post-success']; ?>
+        <?php unset($_SESSION['edit-post-success']); ?>
+      </p>
+    </div>
+  <?php elseif (isset($_SESSION['edit-post'])) : ?>
+    <div class="alert_message error container">
+      <p>
+        <?= $_SESSION['edit-post']; ?>
+        <?php unset($_SESSION['edit-post']); ?>
+      </p>
+    </div>
+  <?php endif ?>
   <div class="container dashboard_container">
     <button id="show_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-right-b"></i></button>
     <button id="hide_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-left-b"></i></button>
@@ -81,8 +103,8 @@ $posts = mysqli_query($connection, $query);
               <tr>
                 <td><?= $post['title'] ?></td>
                 <td><?= $category['title'] ?></td>
-                <td><a href="<?ROOT_URL?>admin/edit-post.php?id=<?= $post['id']?>" class="btn sm">Edit</a></td>
-                <td><a href="<?ROOT_URL?>admin/delete-post.php?id=<?= $post['id']?>" class="btn sm danger">Delete</a></td>
+                <td><a href="<?= ROOT_URL ?>admin/edit-post.php?id=<?= $post['id'] ?>" class="btn sm">Edit</a></td>
+                <td><a href="<?= ROOT_URL ?>admin/delete-post.php?id=<?= $post['id'] ?>" class="btn sm danger">Delete</a></td>
               </tr>
             <?php endwhile ?>
           </tbody>

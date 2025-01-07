@@ -62,7 +62,7 @@ $users = mysqli_query($connection, $query);
           </a>
         </li>
         <li>
-          <a href="post.php"><i class="uil uil-postcard"></i>
+          <a href="index.php"><i class="uil uil-postcard"></i>
             <h5>Manage Post</h5>
           </a>
         </li>
