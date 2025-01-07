@@ -36,6 +36,13 @@ $posts = mysqli_query($connection, $query);
         <?php unset($_SESSION['edit-post']); ?>
       </p>
     </div>
+  <?php elseif (isset($_SESSION['delete-post-success'])) : ?>
+    <div class="alert_message success container">
+      <p>
+        <?= $_SESSION['delete-post-success']; ?>
+        <?php unset($_SESSION['delete-post-success']); ?>
+      </p>
+    </div>
   <?php endif ?>
   <div class="container dashboard_container">
     <button id="show_sidebar-btn" class="sidebar_toggle"><i class="uil uil-angle-right-b"></i></button>
