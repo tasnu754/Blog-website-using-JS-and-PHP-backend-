@@ -73,6 +73,21 @@ if (isset($_GET['id'])) {
 </section>
 
 
+<section class="category_buttons">
+  <div class="container category_buttons-container">
+    <?php
+    $all_categories_query = "SELECT * FROM categories";
+    $all_categories = mysqli_query($connection, $all_categories_query);
+    ?>
+
+    <?php while ($category = mysqli_fetch_assoc($all_categories)) : ?>
+      <a href="<?= ROOT_URL ?>category-posts.php?id=<?= $category['id'] ?>" class="category_button"><?= $category['title'] ?></a>
+    <?php endwhile ?>
+
+  </div>
+</section>
+
+
 
 
 <?php
