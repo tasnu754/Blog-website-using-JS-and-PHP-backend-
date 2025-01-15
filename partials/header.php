@@ -27,9 +27,10 @@ if (isset($_SESSION['user-id'])) {
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 
+
 <body>
     <nav>
-        <div class="container nav__container">
+        <div class="container nav__container ">
             <a href="<?= ROOT_URL ?>" class="nav__logo">EGATOR</a>
             <ul class="nav__items">
                 <li><a href="<?= ROOT_URL ?>blog.php">Blog</a></li>

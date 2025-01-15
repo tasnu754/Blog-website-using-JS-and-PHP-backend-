@@ -13,6 +13,86 @@ $posts = mysqli_query($connection, $query);
 
 ?>
 
+<style>
+  .cont{
+    width: 74%;
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+
+  .header-slider {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 700px;
+    border-radius: 22%;
+    border: 10px solid white;
+    margin-top: 100px;
+    z-index: 10;
+
+    
+  }
+
+  .header-slider .slides {
+    display: flex;
+    width: 100%;
+    height: 100%;  
+    animation: slide 10s infinite;
+  }
+
+  .header-slider .slide {
+    min-width: 100%;
+    height: 100%;
+  }
+
+  .header-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+
+    25% {
+      transform: translateX(-100%);
+    }
+
+    50% {
+      transform: translateX(-200%);
+    }
+
+    75% {
+      transform: translateX(-300%);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+</style>
+
+
+<section class="cont">
+<header class="header-slider ">
+  <div class="slides container">
+    <div class="slide">
+      <img src="images/1698160099473.jfif" alt="Photo 1">
+    </div>
+    <div class="slide">
+      <img src="images/blogging-SMB.png.png" alt="Photo 2">
+    </div>
+    <div class="slide">
+      <img src="images/blog3.png" alt="Photo 3">
+    </div>
+    <div class="slide">
+      <img src="images/9841150-15911700.jpg" alt="Photo 4">
+    </div>
+  </div>
+</header>
+</section>
 
 
 <?php if (mysqli_num_rows($featured_result) == 1): ?>
